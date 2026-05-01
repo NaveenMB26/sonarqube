@@ -11,21 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ✅ FIX 1: Full git history (removes shallow clone warning)
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
+      # ✅ Java setup
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
+      # ✅ Compile step
       - name: Compile Java Code
-        run: javac -d . src/com/example/Main.java
-        
-      - name: Run Java
-        run: java com.example.Main
+        run: |
+          javac src/Main.java
 
+      # ✅ SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v2
         with:
