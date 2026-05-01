@@ -14,7 +14,7 @@ public class Main {
             System.out.println("A is greater than 5");
         }
         if (a > 5) {
-            System.out.println("A is greater than 5");
+            System.out.println("A is greater than 5 number");
         }
     }
 }
