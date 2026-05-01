@@ -1,21 +1,20 @@
 package com.example;
 
-import java.util.logging.Logger;
-
 public class Main {
-
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
 
-        int a = 10;
-        int b = 0;
+        int a = 5;
+        int b = 3;
 
-        if (b != 0) {
-            int result = a / b;
-            logger.info("Result: " + result);
+        // ✅ Correct condition (not always false)
+        if (a > b) {
+            // ✅ Proper formatting using String.format
+            String message = String.format("a (%d) is greater than b (%d)", a, b);
+            System.out.println(message);
         } else {
-            logger.warning("Cannot divide by zero");
+            String message = String.format("a (%d) is not greater than b (%d)", a, b);
+            System.out.println(message);
         }
     }
 }
