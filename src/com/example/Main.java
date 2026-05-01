@@ -1,20 +1,22 @@
-package com.example;
+import java.util.logging.Logger;
 
 public class Main {
 
+    // Create Logger instance
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) {
 
-        int a = 5;
-        int b = 3;
+        // Replace System.out.println with logger
+        logger.info("Application started");
 
-        // ✅ Correct condition (not always false)
-        if (a > b) {
-            // ✅ Proper formatting using String.format
-            String message = String.format("a (%d) is greater than b (%d)", a, b);
-            System.out.println(message);
-        } else {
-            String message = String.format("a (%d) is not greater than b (%d)", a, b);
-            System.out.println(message);
-        }
+        int a = 10;
+        int b = 20;
+
+        int sum = a + b;
+
+        logger.info("Sum is: " + sum);
+
+        logger.info("Application finished");
     }
 }
