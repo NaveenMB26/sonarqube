@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ FIX 1: Full git history (removes shallow clone warning)
+      # ✅ Full git history (fix shallow clone warning)
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
@@ -24,10 +24,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # ✅ Compile step
+      # ✅ FIX: Compile ALL Java files (no path issues)
       - name: Compile Java Code
         run: |
-          javac src/Main.java
+          echo "Compiling all Java files..."
+          find . -name "*.java" > sources.txt
+          if [ -s sources.txt ]; then
+            javac @sources.txt
+          else
+            echo "No Java files found, skipping compilation"
+          fi
 
       # ✅ SonarCloud Scan
       - name: SonarCloud Scan
