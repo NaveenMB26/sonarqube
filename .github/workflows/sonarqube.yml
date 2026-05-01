@@ -11,37 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ Full git history (fix shallow clone warning)
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # ✅ Java setup
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # ✅ FIX: Compile ALL Java files (no path issues)
-      - name: Compile Java Code
-        run: |
-          echo "Compiling all Java files..."
-          find . -name "*.java" > sources.txt
-          if [ -s sources.txt ]; then
-            javac @sources.txt
-          else
-            echo "No Java files found, skipping compilation"
-          fi
+      # Run tests + generate coverage
+      - name: Build and Test
+        run: mvn clean verify
 
-      # ✅ SonarCloud Scan
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v2
-        with:
-          args: >
-            -Dsonar.projectKey=naveenmb26_sonarqube
-            -Dsonar.organization=naveenmb26
-            -Dsonar.host.url=https://sonarcloud.io
+      # Sonar scan
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
