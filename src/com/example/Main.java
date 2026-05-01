@@ -15,7 +15,8 @@ public class Main {
 
         int sum = a + b;
 
-        logger.info("Sum is: " + sum);
+        // ✅ Fixed (lazy evaluation)
+        logger.info(() -> "Sum is: " + sum);
 
         logger.info("Application finished");
     }
