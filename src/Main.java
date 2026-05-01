@@ -11,7 +11,7 @@ public class Main {
 
         // Duplicate code
         if (a > 5) {
-            System.out.println("A is greater than 5");
+            System.out.println("A is greater than 5 number");
         }
         if (a > 5) {
             System.out.println("A is greater than 5 number");
