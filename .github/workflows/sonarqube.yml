@@ -21,7 +21,10 @@ jobs:
           java-version: '17'
 
       - name: Compile Java Code
-        run: javac -d . src/Main.java
+        run: javac -d . src/com/example/Main.java
+        
+      - name: Run Java
+        run: java com.example.Main
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v2
