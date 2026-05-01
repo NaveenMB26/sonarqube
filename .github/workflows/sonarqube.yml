@@ -22,13 +22,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Run tests + generate coverage
-      - name: Build and Test
-        run: mvn clean verify
-
-      # Sonar scan
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v2
+      # ✅ THIS FIXES YOUR ERROR
+      - name: Build + Sonar Scan
+        run: mvn clean verify sonar:sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
